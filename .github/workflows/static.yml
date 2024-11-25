@@ -1,0 +1,22 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Hoặc nhánh mà bạn muốn deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        branch: gh-pages  # Nhánh được deploy lên GitHub Pages
+        folder: .          # Deploy tất cả các file ở thư mục root
+        clean: true        # Tùy chọn xóa các file cũ
+        token: ${{ secrets.GITHUB_TOKEN }}  # Sử dụng GitHub token
